@@ -7,7 +7,24 @@
         <div class="px-3">
             <!-- <CreateNewDropdown/> -->
             <div class="py-3">
-                <NavLink :href="route('dashboard')" :active="true">Home</NavLink>
+                <NavLink :href="route('dashboard')" :active="true">
+                    <HomeIcon class="h-5 w-5 text-gray-900 " /> 
+                    <span class="pl-2">Home</span>
+                </NavLink>
+
+                <NavLink :href="route('admin.overview')" :active="false">
+                    <ArrowTrendingUpIcon class="h-5 w-5 text-gray-900 " /> 
+                    <span class="pl-2">Overview</span>
+                </NavLink>
+                <NavLink :href="route('admin.roles.index')" :active="false">
+                    <UserGroupIcon class="h-5 w-5 text-gray-900 " /> 
+                    <span class="pl-2">Roles</span>
+                </NavLink>
+                <NavLink :href="route('admin.users.index')" :active="false">
+                    <UsersIcon class="h-5 w-5 text-gray-900 " /> 
+                    <span class="pl-2">Users</span>
+                </NavLink>
+                
                 
             </div>
         </div>
@@ -18,4 +35,28 @@ import ApplicationLogo from '../ApplicationLogo.vue';
 import CreateNewDropdown from '@/Components/app/CreateNewDropdown.vue';
 import NavLink from '@/Components/NavLink.vue';
 import { Link } from '@inertiajs/vue3';
+import {
+  HomeIcon,
+  BookmarkIcon,
+  ChevronDoubleDownIcon,
+  LockClosedIcon,
+  ChatBubbleLeftIcon,
+  CursorArrowRaysIcon,
+  XMarkIcon,
+  Bars3Icon,
+  SunIcon,
+  MoonIcon,
+  UserGroupIcon,
+  UsersIcon,
+  KeyIcon,
+  BriefcaseIcon,
+  DocumentPlusIcon,
+  ClipboardDocumentListIcon,
+  DocumentDuplicateIcon,
+  DocumentIcon,
+  ClockIcon,
+  CheckIcon,
+  ArrowTrendingUpIcon,
+
+} from '@heroicons/vue/24/outline'
 </script>
