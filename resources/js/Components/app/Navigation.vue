@@ -7,22 +7,26 @@
         <div class="px-3">
             <!-- <CreateNewDropdown/> -->
             <div class="py-3">
-                <NavLink :href="route('dashboard')" :active="true">
+                <NavLink :href="route('dashboard')" :active="$page.url == '/dashboard'">
                     <HomeIcon class="h-5 w-5 text-gray-900 " /> 
                     <span class="pl-2">Home</span>
                 </NavLink>
 
-                <NavLink :href="route('admin.overview')" :active="false">
+                <NavLink :href="route('admin.overview')" :active="$page.url == '/admin/overview'">
                     <ArrowTrendingUpIcon class="h-5 w-5 text-gray-900 " /> 
                     <span class="pl-2">Overview</span>
                 </NavLink>
-                <NavLink :href="route('admin.roles.index')" :active="false">
+                <NavLink :href="route('admin.roles.index')" :active="$page.url == '/admin/roles'">
                     <UserGroupIcon class="h-5 w-5 text-gray-900 " /> 
                     <span class="pl-2">Roles</span>
                 </NavLink>
-                <NavLink :href="route('admin.users.index')" :active="false">
+                <NavLink :href="route('admin.users.index')" :active="$page.url == '/admin/users'">
                     <UsersIcon class="h-5 w-5 text-gray-900 " /> 
                     <span class="pl-2">Users</span>
+                </NavLink>
+                <NavLink :href="route('admin.suppliers.index')" :active="$page.url == '/admin/suppliers'">
+                    <DocumentIcon class="h-5 w-5 text-gray-900 " /> 
+                    <span class="pl-2">Suppliers</span>
                 </NavLink>
                 
                 

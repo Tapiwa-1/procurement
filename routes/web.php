@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\OverviewController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -24,7 +25,7 @@ Route::get('/dashboard', function () {
 
 
 Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () {
-    Route::get('/admin/overview', [OverviewController::class,'index'])->middleware('auth')->name('overview');
+    Route::get('/overview', [OverviewController::class,'index'])->middleware('auth')->name('overview');
 
     Route::resource('/roles', RoleController::class);
     Route::post('/roles/{role}/permissions', [RoleController::class, 'givePermission'])->name('roles.permission');
@@ -39,6 +40,9 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
     Route::delete('/users/{user}/roles/{role}', [UsersController::class, 'removeRole'])->name('users.roles.remove');
     Route::post('/users/{user}/permissions', [UsersController::class, 'givePermission'])->name('users.permissions');
     Route::delete('/users/{user}/permissions/{permission}', [UsersController::class, 'revokePermission'])->name('users.permissions.revoke');
+
+    Route::resource('/suppliers', SupplierController::class);
+  
 
 });
 

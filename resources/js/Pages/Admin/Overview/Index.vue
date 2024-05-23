@@ -5,7 +5,7 @@
     
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="overflow-hidden ">
                     <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
                 <div class="col-span-2">
                     <div class="mb-3 text-gray-500 dark:text-gray-400 shadow">

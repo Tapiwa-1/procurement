@@ -29,7 +29,7 @@ watch(item, value =>{
     <AuthenticatedLayout>
         <div class="py-12">
             <div class="max-w-7xl min-h-screen mx-auto sm:px-6 lg:px-8">
-                <div class=" overflow-hidden shadow-sm sm:rounded-lg">
+                <div class=" overflow-hidden">
                     <div class="flex items-center justify-between" >
 
                         <div class="relative  " >
