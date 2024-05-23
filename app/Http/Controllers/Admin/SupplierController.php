@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Supplier;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
@@ -13,7 +14,7 @@ class SupplierController extends Controller
 {
     public function index(Request $request)
     {
-        $suppliers = Supplier::when($request->item,function($query,$item){
+        $suppliers = User::role('Vendor/Supplier')->when($request->item,function($query,$item){
             $query->where('name','LIKE','%'.$item.'%');
         })->paginate(10);
         return Inertia::render('Admin/Suppliers/Index',compact('suppliers'));
@@ -24,23 +25,27 @@ class SupplierController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:'.Supplier::class,
+            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
             'phone' => 'required|max:20',
             'address' => 'required|string|max:255',
             'password' => 'required', 'confirmed', Password::defaults()
         ]);
 
-        Supplier::create([
+        User::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'address' => $request->address,
             'password' => Hash::make($request->password),
-        ]);
+        ])->assignRole('Vendor/Supplier');
 
         return to_route('admin.suppliers.index');
     }
 
+    public function show($id){
+        $supplier = User::find($id);
+        return Inertia::render('Admin/Suppliers/Show',compact('supplier'));
+    }
     public function destroy(Supplier $supplier)
     {
         $supplier->delete();
