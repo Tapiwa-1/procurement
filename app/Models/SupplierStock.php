@@ -5,19 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Requisition extends Model
+class SupplierStock extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
-        'title',
-        'description',
+        'product_name',
         'quantity',
-        'unit_price',
-        'total_price',
-        'delivery_date',
-        'approved',
+        'price',
+        // Add other relevant fields
     ];
 
     public function user()

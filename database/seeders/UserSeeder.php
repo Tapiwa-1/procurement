@@ -15,26 +15,46 @@ class UserSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
         $roles = [
+            
             "Administrator",
-            "Procurement Manager",
+            "Receptionist",
             "Procurement Officer",
-            "Finance Officer",
-            "Vendor/Supplier",
-            "Technical Evaluator",
-            "Legal Advisor",
-            "Compliance Officer",
-            "IT Administrator",
-            "User Support Specialist",
-            "Quality Assurance Officer",
-            "Project Manager",
-            "Stakeholder Liaison",
-            "Reporting Analyst"
+            "Assistant Group Accountant",
+            "Verification Assistant",
+            "Verification Officer",
+            "Group Accountant",
+            "General Manager",
+            "Fm Payments teclar",
         ];
         $user= User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@example.com',
             
         ])->assignRole('admin');
+
+        $user= User::factory()->create([
+            'name' => 'Supplier1',
+            'email' => 'Supplier1@example.com',
+            
+        ])->assignRole('Vendor/Supplier');
+
+        $user= User::factory()->create([
+            'name' => 'Supplier2',
+            'email' => 'Supplier2@example.com',
+            
+        ])->assignRole('Vendor/Supplier');
+
+        $user= User::factory()->create([
+            'name' => 'Supplier3',
+            'email' => 'Supplier3@example.com',
+            
+        ])->assignRole('Vendor/Supplier');
+
+        $user= User::factory()->create([
+            'name' => 'Supplier4',
+            'email' => 'Supplier4@example.com',
+            
+        ])->assignRole('Vendor/Supplier');
 
         foreach ($roles as $role) {
                 $user= User::factory()->create([

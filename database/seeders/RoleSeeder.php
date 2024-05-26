@@ -13,20 +13,20 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
+        
+
+
         Role::create(['name' => 'admin',]);
         Role::create(['name' => 'Administrator']);
-        Role::create(['name' => 'Procurement Manager']);
+        Role::create(['name' => 'Receptionist']);
         Role::create(['name' => 'Procurement Officer']);
-        Role::create(['name' => 'Finance Officer']);
+        Role::create(['name' => 'Assistant Group Accountant']);
         Role::create(['name' => 'Vendor/Supplier']);
-        Role::create(['name' => 'Technical Evaluator']);
-        Role::create(['name' => 'Legal Advisor']);
-        Role::create(['name' => 'Compliance Officer']);
-        Role::create(['name' => 'IT Administrator']);
-        Role::create(['name' => 'User Support Specialist']);
-        Role::create(['name' => 'Quality Assurance Officer']);
-        Role::create(['name' => 'Project Manager']);
-        Role::create(['name' => 'Stakeholder Liaison']);
-        Role::create(['name' => 'Reporting Analyst']);
+        Role::create(['name' => 'Verification Assistant']);
+        Role::create(['name' => 'Verification Officer']);
+        Role::create(['name' => 'Group Accountant']);
+        Role::create(['name' => 'General Manager']);
+        Role::create(['name' => 'Fm Payments teclar']);
+    
     }
 }

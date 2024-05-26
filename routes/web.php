@@ -5,7 +5,11 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\ProcurementOfficer\ApprovalController;
+use App\Http\Controllers\ProcuremntOfficer\QuatationController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Receptionist\RequisitionController;
+use App\Http\Controllers\Supplier\StockContoller;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,7 +28,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () {
+Route::middleware([ 'role:admin'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/overview', [OverviewController::class,'index'])->middleware('auth')->name('overview');
 
     Route::resource('/roles', RoleController::class);
@@ -42,9 +46,24 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
     Route::delete('/users/{user}/permissions/{permission}', [UsersController::class, 'revokePermission'])->name('users.permissions.revoke');
 
     Route::resource('/suppliers', SupplierController::class);
-  
+});
+
+Route::middleware([ 'role:Vendor/Supplier'])->name('supplier.')->prefix('supplier')->group(function () {
+    Route::resource('/stocks',StockContoller::class);
+});
+
+Route::middleware([ 'role:Receptionist'])->name('receptionist.')->prefix('receptionist')->group(function () {
+    Route::resource('/requisition',RequisitionController::class);
+});
+
+Route::middleware([ 'role:Procurement Officer'])->name('procurement-officer.')->prefix('procurement-officer')->group(function () {
+    Route::resource('/quatations',QuatationController::class);
+    Route::get('/requisition',[RequisitionController::class,'index'])->name('requisition.index');
+    Route::get('/requisition/{id}',[RequisitionController::class,'show'])->name('requisition.show');
+    Route::patch('/requisition/{id}/approve',[ApprovalController::class,'approve'])->name('requisition.approve');
 
 });
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
