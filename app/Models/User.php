@@ -56,4 +56,8 @@ class User extends Authenticatable
     public function requisitions(){
         return $this->hasMany(Requisition::class);
     }
+
+    public function taxClearance(){
+        return $this->hasOne(TaxClearance::class);
+    }
 }

@@ -16,9 +16,9 @@ class ApprovalController extends Controller
     {
         //
         $requisition = Requisition::find($id);
-        $requisition->approved == 1;
+        $requisition->approved = 1;
+        // dd($requisition);
         $requisition->save();
-        dd(11);
         return redirect()->back();
     }
 }

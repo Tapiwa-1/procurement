@@ -12,7 +12,8 @@ import TextInput from '@/Components/TextInput.vue';
 
 let item = ref(null)
 defineProps({
-    supplier: Object
+    supplier: Object,
+    certificate:Object,
 })
 
 </script>
@@ -28,6 +29,7 @@ defineProps({
                     <div class=" shadow-md sm:rounded-lg">
                         <div class="bg-white w-full shadow overflow-hidden sm:rounded-lg">
                             <div class="px-4 py-5 sm:px-6">
+                            
                                 <h3 class="text-lg leading-6 font-medium text-gray-900">
                                     {{ supplier.name }}
                                 </h3>
@@ -69,6 +71,15 @@ defineProps({
                                             {{ supplier.phone }}
                                         </dd>
                                     </div>
+                                    <div v-if="Array.isArray(certificate) && certificate.length != 0" class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                        <dt class="text-sm font-medium text-gray-500">
+                                            certificate
+                                        </dt>
+                                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                            <img :src="certificate[0].file " alt="">
+                                        </dd>
+                                    </div>
+                                    
                                     <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                         <dt class="text-sm font-medium text-blue-500 underline">
                                             <Link :href="route('admin.suppliers.index')">Back</Link>

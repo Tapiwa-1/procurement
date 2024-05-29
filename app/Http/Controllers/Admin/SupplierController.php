@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Supplier;
+use App\Models\TaxClearance;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -44,7 +45,8 @@ class SupplierController extends Controller
 
     public function show($id){
         $supplier = User::find($id);
-        return Inertia::render('Admin/Suppliers/Show',compact('supplier'));
+        $certificate = TaxClearance::where('user_id',$id)->get();
+        return Inertia::render('Admin/Suppliers/Show',compact('supplier','certificate'));
     }
     public function destroy(Supplier $supplier)
     {

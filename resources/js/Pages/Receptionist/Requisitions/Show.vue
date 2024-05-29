@@ -75,7 +75,7 @@ defineProps({
                                         </dt>
                                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                             <div v-if="$page.props.user.userRoles.includes('Receptionist')" class="">
-                                                <div v-if="requisition.approved  == 0" class="text-green-600 text-bold">
+                                                <div v-if="requisition.approved  == 1" class="text-green-600 text-bold">
                                                     Yes
                                                 </div>
                                                 <div v-else class="text-red-600 text-bold">
@@ -83,10 +83,11 @@ defineProps({
                                                 </div>
                                             </div>
                                             <div v-if="$page.props.user.userRoles.includes('Procurement Officer')" class="">
-                                                <div v-if="requisition.approved  == 0" class="text-green-600 text-bold">
+                                                <div v-if="requisition.approved  == 1" class="text-green-600 text-bold">
                                                     Yes
                                                 </div>
                                                 <div v-else class="text-red-600 text-bold">
+                                                    
                                                     <Link method="patch" :href="route('procurement-officer.requisition.approve', requisition.id)">Click to approve</Link>
                                                 </div>
                                             </div>

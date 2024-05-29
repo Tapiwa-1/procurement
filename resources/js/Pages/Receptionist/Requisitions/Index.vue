@@ -121,7 +121,7 @@ const closeModal = () => {
 
                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
 
-                                            <div v-if="requisition.approved  == 0" class="text-green-600 text-bold">
+                                            <div v-if="requisition.approved  == 1" class="text-green-600 text-bold">
                                                 Yes
                                             </div>
                                             <div v-else class="text-red-600 text-bold">

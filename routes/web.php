@@ -10,6 +10,7 @@ use App\Http\Controllers\ProcuremntOfficer\QuatationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Receptionist\RequisitionController;
 use App\Http\Controllers\Supplier\StockContoller;
+use App\Http\Controllers\Supplier\TaxClearanceController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,7 +29,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::middleware([ 'role:admin'])->name('admin.')->prefix('admin')->group(function () {
+Route::middleware([ 'auth','role:admin'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/overview', [OverviewController::class,'index'])->middleware('auth')->name('overview');
 
     Route::resource('/roles', RoleController::class);
@@ -48,24 +49,28 @@ Route::middleware([ 'role:admin'])->name('admin.')->prefix('admin')->group(funct
     Route::resource('/suppliers', SupplierController::class);
 });
 
-Route::middleware([ 'role:Vendor/Supplier'])->name('supplier.')->prefix('supplier')->group(function () {
+Route::middleware([ 'auth','role:Vendor/Supplier'])->name('supplier.')->prefix('supplier')->group(function () {
     Route::resource('/stocks',StockContoller::class);
+    Route::post('/tax-certificate',[TaxClearanceController::class,'store'])->name('taxClearance.store');
+    Route::delete('/tax-certificate-delete/{id}',[TaxClearanceController::class,'destroy'])->name('taxClearance.destory');
 });
 
-Route::middleware([ 'role:Receptionist'])->name('receptionist.')->prefix('receptionist')->group(function () {
+Route::middleware([ 'auth','role:Receptionist'])->name('receptionist.')->prefix('receptionist')->group(function () {
     Route::resource('/requisition',RequisitionController::class);
 });
 
-Route::middleware([ 'role:Procurement Officer'])->name('procurement-officer.')->prefix('procurement-officer')->group(function () {
+Route::middleware(['auth', 'role:Procurement Officer'])->name('procurement-officer.')->prefix('procurement-officer')->group(function () {
     Route::resource('/quatations',QuatationController::class);
     Route::get('/requisition',[RequisitionController::class,'index'])->name('requisition.index');
     Route::get('/requisition/{id}',[RequisitionController::class,'show'])->name('requisition.show');
     Route::patch('/requisition/{id}/approve',[ApprovalController::class,'approve'])->name('requisition.approve');
+    
 
 });
 
 
 Route::middleware('auth')->group(function () {
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
