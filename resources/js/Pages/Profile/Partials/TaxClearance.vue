@@ -111,7 +111,7 @@ const cancelUploaded = () =>{
                         <div v-else class=" items-center  w-full h-full overflow-hidden">
                        
                             <img  class=" min-w-[200px] p-4 mx-auto" :src="certificate[0].file">
-                            <Link :href="route('supplier.taxClearance.destory', certificate[0].id)" method="delete" class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150"  >Delete certificate</Link>
+                            <Link role="button" :href="route('supplier.taxClearance.destory', certificate[0].id)" method="delete" class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150"  >Delete certificate</Link>
                             
                         </div>
                         

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\ProcurementOfficer\ApprovalController;
+use App\Http\Controllers\ProcuremntOfficer\MarketController;
 use App\Http\Controllers\ProcuremntOfficer\QuatationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Receptionist\RequisitionController;
@@ -61,6 +62,8 @@ Route::middleware([ 'auth','role:Receptionist'])->name('receptionist.')->prefix(
 
 Route::middleware(['auth', 'role:Procurement Officer'])->name('procurement-officer.')->prefix('procurement-officer')->group(function () {
     Route::resource('/quatations',QuatationController::class);
+    Route::get('/market',[MarketController::class,'index'])->name('market.index');
+    Route::get('/supplier/{id}', [SupplierController::class,'show'])->name('suppliers.show');
     Route::get('/requisition',[RequisitionController::class,'index'])->name('requisition.index');
     Route::get('/requisition/{id}',[RequisitionController::class,'show'])->name('requisition.show');
     Route::patch('/requisition/{id}/approve',[ApprovalController::class,'approve'])->name('requisition.approve');

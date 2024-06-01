@@ -63,7 +63,7 @@ const closeModal = () => {
         <div class="py-12">
             <div class="max-w-7xl min-h-screen mx-auto sm:px-6 lg:px-8">
                 <div class=" overflow-hidden">
-                    <div class="flex items-center justify-between" >
+                    <div v-if="$page.props.user.userRoles.includes('Receptionist')"  class="flex items-center justify-between" >
                         <button @click="showAddRoleOverlay = true"  class="my-auto inline-flex items-center justify-center p-0.5  overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
                             <span class="p-2 my- transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                                 Create Requisition
@@ -95,7 +95,7 @@ const closeModal = () => {
                                     <th scope="col" class="px-6 py-3">
                                         approved
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
+                                    <th v-if="$page.props.user.userRoles.includes('Procurement Officer')" scope="col" class="px-6 py-3">
                                         Action
                                     </th>
 
@@ -146,7 +146,7 @@ const closeModal = () => {
                     </div>
 
                 </div>
-                  <!-- <Pagination :links="suppliers.links"/> -->
+                  <Pagination :links="requisitions.links"/>
             </div>
 
             </div>
@@ -170,7 +170,7 @@ const closeModal = () => {
                                             <InputLabel for="email" value="Title" />
 
                                             <TextInput
-                                                id="Email"
+                                             
                                                 type="text"
                                                 class="mt-1 block w-full"
                                                 v-model="form.title"
@@ -192,7 +192,7 @@ const closeModal = () => {
                                             <InputLabel for="email" value="Quantity" />
 
                                             <TextInput
-                                                id="Email"
+                                              
                                                 type="number"
                                                 class="mt-1 block w-full"
                                                 v-model="form.quantity"
@@ -206,7 +206,7 @@ const closeModal = () => {
                                             <InputLabel for="phone" value="Price" />
 
                                             <TextInput
-                                                id="Email"
+                                               
                                                 type="number"
                                                 class="mt-1 block w-full"
                                                 v-model="form.unit_price"
@@ -222,7 +222,7 @@ const closeModal = () => {
                                             <InputLabel for="phone" value="Delivery Date" />
 
                                             <TextInput
-                                                id="Email"
+                                             
                                                 type="date"
                                                 class="mt-1 block w-full"
                                                 v-model="form.delivery_date"

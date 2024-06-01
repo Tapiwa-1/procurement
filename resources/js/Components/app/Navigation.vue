@@ -46,10 +46,15 @@
                 </template>
 
                 <template v-if="$page.props.user.userRoles.includes('Procurement Officer')" >
+                    <NavLink :href="route('procurement-officer.market.index')" :active="$page.url == '/procurement-officer/market'">
+                        <ShoppingCartIcon class="h-5 w-5 text-gray-900 " /> 
+                        <span class="pl-2">Market</span>
+                    </NavLink>
                     <NavLink :href="route('procurement-officer.requisition.index')" :active="$page.url == '/procurement-officer/requisition'">
                         <DocumentIcon class="h-5 w-5 text-gray-900 " /> 
                         <span class="pl-2">Requisition</span>
                     </NavLink>
+                    
                     <NavLink :href="route('procurement-officer.quatations.index')" :active="$page.url == '/procurement-officer/quatations'">
                         <CurrencyDollarIcon class="h-5 w-5 text-gray-900 " /> 
                         <span class="pl-2">Quatations</span>
