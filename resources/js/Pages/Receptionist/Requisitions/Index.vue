@@ -104,41 +104,90 @@ const closeModal = () => {
                             <tbody>
                                 
                                 <tr v-for="requisition in requisitions.data" :key="requisition.id" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{requisition.title  }}
-                                    </th>
-                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{requisition.quantity }}
-                                    </th>
+                                    <template v-if="$page.props.user.userRoles.includes('Vendor/Supplier')">
+                                        <template v-if="requisition.approved  == 1">
+                                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {{requisition.title  }}
+                                        </th>
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {{requisition.quantity }}
+                                        </th>
 
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{requisition.unit_price }} 
-                                    </th>
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {{requisition.unit_price }} 
+                                        </th>
 
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{requisition.delivery_date }} 
-                                    </th>
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {{requisition.delivery_date }} 
+                                        </th>
 
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
 
-                                            <div v-if="requisition.approved  == 1" class="text-green-600 text-bold">
-                                                Yes
-                                            </div>
-                                            <div v-else class="text-red-600 text-bold">
-                                                No
-                                            </div>
-                                    </th>
+                                                <div v-if="requisition.approved  == 1" class="text-green-600 text-bold">
+                                                    Yes
+                                                </div>
+                                                <div v-else class="text-red-600 text-bold">
+                                                    No
+                                                </div>
+                                        </th>
+                                    
+                                        <td class="px-6 py-4">
+                                            <template v-if="$page.props.user.userRoles.includes('Receptionist')">
+                                                <Link as="button" :href="route('receptionist.requisition.show', requisition.id)"  class="font-medium text-green-600 mr-2 dark:text-green-500 hover:underline">Show</Link>
+                                                <Link as="button" :href="route('receptionist.requisition.destroy', requisition.id)" method="delete" class="font-medium text-red-600 mr-2 dark:text-red-500 hover:underline">Delete</Link>
+                                            </template>
+                                            <template v-if="$page.props.user.userRoles.includes('Procurement Officer')">
+                                                <Link as="button" :href="route('procurement-officer.requisition.show', requisition.id)"  class="font-medium text-green-600 mr-2 dark:text-green-500 hover:underline">Show</Link> 
+                                            </template>
+                                            <template v-if="$page.props.user.userRoles.includes('Vendor/Supplier')">
+                                                <Link as="button" :href="route('supplier.requisition.show', requisition.id)"  class="font-medium text-green-600 mr-2 dark:text-green-500 hover:underline">Show</Link> 
+                                            </template>
+                                            
+                                        </td>
+                                        </template>
+                                          
+                                    </template>
+                                    <template v-else>
+                                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {{requisition.title  }}
+                                        </th>
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {{requisition.quantity }}
+                                        </th>
+
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {{requisition.unit_price }} 
+                                        </th>
+
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {{requisition.delivery_date }} 
+                                        </th>
+
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                                                <div v-if="requisition.approved  == 1" class="text-green-600 text-bold">
+                                                    Yes
+                                                </div>
+                                                <div v-else class="text-red-600 text-bold">
+                                                    No
+                                                </div>
+                                        </th>
+                                    
+                                        <td class="px-6 py-4">
+                                            <template v-if="$page.props.user.userRoles.includes('Receptionist')">
+                                                <Link as="button" :href="route('receptionist.requisition.show', requisition.id)"  class="font-medium text-green-600 mr-2 dark:text-green-500 hover:underline">Show</Link>
+                                                <Link as="button" :href="route('receptionist.requisition.destroy', requisition.id)" method="delete" class="font-medium text-red-600 mr-2 dark:text-red-500 hover:underline">Delete</Link>
+                                            </template>
+                                            <template v-if="$page.props.user.userRoles.includes('Procurement Officer')">
+                                                <Link as="button" :href="route('procurement-officer.requisition.show', requisition.id)"  class="font-medium text-green-600 mr-2 dark:text-green-500 hover:underline">Show</Link> 
+                                            </template>
+                                            <template v-if="$page.props.user.userRoles.includes('Vendor/Supplier')">
+                                                <Link as="button" :href="route('supplier.requisition.show', requisition.id)"  class="font-medium text-green-600 mr-2 dark:text-green-500 hover:underline">Shows</Link> 
+                                            </template>
+                                            
+                                        </td>
+                                    </template>
                                    
-                                    <td class="px-6 py-4">
-                                        <template v-if="$page.props.user.userRoles.includes('Receptionist')">
-                                            <Link as="button" :href="route('receptionist.requisition.show', requisition.id)"  class="font-medium text-green-600 mr-2 dark:text-green-500 hover:underline">Show</Link>
-                                            <Link as="button" :href="route('receptionist.requisition.destroy', requisition.id)" method="delete" class="font-medium text-red-600 mr-2 dark:text-red-500 hover:underline">Delete</Link>
-                                        </template>
-                                        <template v-if="$page.props.user.userRoles.includes('Procurement Officer')">
-                                            <Link as="button" :href="route('procurement-officer.requisition.show', requisition.id)"  class="font-medium text-green-600 mr-2 dark:text-green-500 hover:underline">Show</Link> 
-                                        </template>
-                                        
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>

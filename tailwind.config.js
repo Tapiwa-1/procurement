@@ -16,6 +16,13 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
         },
+        listStyleType: {
+          
+            disc: 'disc',
+            decimal: 'decimal',
+            square: 'square',
+            roman: 'upper-roman',
+          }
     },
 
     plugins: [forms],

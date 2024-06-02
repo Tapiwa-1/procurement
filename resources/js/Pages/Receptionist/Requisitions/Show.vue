@@ -9,12 +9,38 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
 let item = ref(null)
-defineProps({
+const props = defineProps({
     requisition: Object
 })
 
+
+const form = useForm({
+    requisition_id: props.requisition.id,
+    title:"",
+    description:"",
+   
+});
+
+const showAddRoleOverlay = ref(null)
+const submit = () => {
+    form.post(route('supplier.quatations.store'),{
+
+        preserveScroll: true,
+        onSuccess: () => closeModal(),
+
+        onFinish: () => form.reset(),
+    });
+
+};
+const closeModal = () => {
+    showAddRoleOverlay.value = false;
+
+    form.reset();
+};
 </script>
 
 <template>
@@ -70,7 +96,7 @@ defineProps({
                                         </dd>
                                     </div>
                                     <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                        <dt class="text-sm font-medium text-gray-500">
+                                        <dt v-if="$page.props.user.userRoles.includes('Procurement Officer')"  class="text-sm font-medium text-gray-500">
                                             Approved
                                         </dt>
                                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
@@ -91,8 +117,11 @@ defineProps({
                                                     <Link method="patch" :href="route('procurement-officer.requisition.approve', requisition.id)">Click to approve</Link>
                                                 </div>
                                             </div>
-                                            
+                                            <div class="">
+                                                <PrimaryButton v-if="$page.props.user.userRoles.includes('Vendor/Supplier')"  @click="showAddRoleOverlay = true" >Create  Quatation</PrimaryButton>
+                                            </div>
                                         </dd>
+                                        
                                     </div>
 
 
@@ -119,5 +148,49 @@ defineProps({
 
     </AuthenticatedLayout>
 
-   
+    
+    <Modal :show="showAddRoleOverlay" @close="closeModal">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class=" shadow-md sm:rounded-lg">
+                         <div class="py-12">
+                            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                                <div class=" overflow-hidden shadow-sm sm:rounded-lg">
+                                    <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
+                                        {{ status }}
+                                    </div>
+
+                                    <form class="m-1" @submit.prevent="submit">
+                                        <div>
+                                            <InputLabel for="email" value="Title" />
+
+                                            <TextInput
+                                             
+                                                type="text"
+                                                class="mt-1 block w-full"
+                                                v-model="form.title"
+
+                                               
+                                        
+                                            />
+                                            <InputError class="mt-2" :message="form.errors.title" />
+                                        </div>
+                                       
+                                        <div>
+                                            <InputLabel for="name" value="Description" />
+
+                                            <QuillEditor  v-model:content="form.description" content-type="html"  class=" min-h-96" theme="snow" />
+                                            <InputError class="mt-2 " :message="form.errors.description" />
+                                        </div>           
+                                        <div class="flex items-center justify-end mt-4">
+                                            <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                                Create Quatation
+                                            </PrimaryButton>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </Modal>
 </template>

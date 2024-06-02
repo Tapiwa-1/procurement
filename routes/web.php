@@ -17,12 +17,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return redirect('/register');
 });
 
 Route::get('/dashboard', function () {
@@ -50,10 +45,15 @@ Route::middleware([ 'auth','role:admin'])->name('admin.')->prefix('admin')->grou
     Route::resource('/suppliers', SupplierController::class);
 });
 
+
+//supplier
 Route::middleware([ 'auth','role:Vendor/Supplier'])->name('supplier.')->prefix('supplier')->group(function () {
     Route::resource('/stocks',StockContoller::class);
     Route::post('/tax-certificate',[TaxClearanceController::class,'store'])->name('taxClearance.store');
     Route::delete('/tax-certificate-delete/{id}',[TaxClearanceController::class,'destroy'])->name('taxClearance.destory');
+    Route::get('/requisition',[RequisitionController::class,'index'])->name('requisition.index');
+    Route::get('/requisition/{id}',[RequisitionController::class,'show'])->name('requisition.show');
+    Route::resource('/quatations',QuatationController::class);
 });
 
 Route::middleware([ 'auth','role:Receptionist'])->name('receptionist.')->prefix('receptionist')->group(function () {
@@ -61,13 +61,13 @@ Route::middleware([ 'auth','role:Receptionist'])->name('receptionist.')->prefix(
 });
 
 Route::middleware(['auth', 'role:Procurement Officer'])->name('procurement-officer.')->prefix('procurement-officer')->group(function () {
-    Route::resource('/quatations',QuatationController::class);
+    
     Route::get('/market',[MarketController::class,'index'])->name('market.index');
     Route::get('/supplier/{id}', [SupplierController::class,'show'])->name('suppliers.show');
     Route::get('/requisition',[RequisitionController::class,'index'])->name('requisition.index');
     Route::get('/requisition/{id}',[RequisitionController::class,'show'])->name('requisition.show');
     Route::patch('/requisition/{id}/approve',[ApprovalController::class,'approve'])->name('requisition.approve');
-    
+    Route::resource('/quatations',QuatationController::class);
 
 });
 

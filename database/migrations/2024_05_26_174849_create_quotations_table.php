@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('quotations', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('requisition_id');
+            $table->foreign('requisition_id')->references('id')->on('requisitions')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->text('title');
+            $table->text('description');
+            $table->boolean('approved')->default(false);
             $table->timestamps();
         });
     }
