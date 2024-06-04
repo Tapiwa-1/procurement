@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\ProcurementOfficer\ApprovalController;
+use App\Http\Controllers\ProcurementOfficer\SummaryController;
 use App\Http\Controllers\ProcuremntOfficer\MarketController;
 use App\Http\Controllers\ProcuremntOfficer\QuatationController;
 use App\Http\Controllers\ProfileController;
@@ -25,24 +26,24 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
+
+//admin
 Route::middleware([ 'auth','role:admin'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/overview', [OverviewController::class,'index'])->middleware('auth')->name('overview');
-
     Route::resource('/roles', RoleController::class);
     Route::post('/roles/{role}/permissions', [RoleController::class, 'givePermission'])->name('roles.permission');
     Route::delete('/roles/{role}/permissions/{permission}', [RoleController::class, 'revokePermission'])->name('roles.permissions.revoke');
     Route::resource('/permissions', PermissionController::class);
     Route::post('/permissions/{permission}/roles', [PermissionController::class, 'assignRole'])->name('permissions.role');
     Route::delete('/permissions/{permission}/roles/{role}', [PermissionController::class, 'removeRole'])->name('permissions.roles.remove');
-
     Route::get('/users', [UsersController::class, 'index'])->name('users.index');
     Route::get('/users/{user}', [UsersController::class, 'show'])->name('users.show');
     Route::post('/users/{user}/roles', [UsersController::class, 'assignRole'])->name('users.roles');
     Route::delete('/users/{user}/roles/{role}', [UsersController::class, 'removeRole'])->name('users.roles.remove');
     Route::post('/users/{user}/permissions', [UsersController::class, 'givePermission'])->name('users.permissions');
     Route::delete('/users/{user}/permissions/{permission}', [UsersController::class, 'revokePermission'])->name('users.permissions.revoke');
-
     Route::resource('/suppliers', SupplierController::class);
+    
 });
 
 
@@ -56,10 +57,14 @@ Route::middleware([ 'auth','role:Vendor/Supplier'])->name('supplier.')->prefix('
     Route::resource('/quatations',QuatationController::class);
 });
 
+
+//Receptionist
 Route::middleware([ 'auth','role:Receptionist'])->name('receptionist.')->prefix('receptionist')->group(function () {
     Route::resource('/requisition',RequisitionController::class);
 });
 
+
+//Procurement Officer
 Route::middleware(['auth', 'role:Procurement Officer'])->name('procurement-officer.')->prefix('procurement-officer')->group(function () {
     
     Route::get('/market',[MarketController::class,'index'])->name('market.index');
@@ -68,12 +73,25 @@ Route::middleware(['auth', 'role:Procurement Officer'])->name('procurement-offic
     Route::get('/requisition/{id}',[RequisitionController::class,'show'])->name('requisition.show');
     Route::patch('/requisition/{id}/approve',[ApprovalController::class,'approve'])->name('requisition.approve');
     Route::resource('/quatations',QuatationController::class);
+    Route::resource('/summaries',SummaryController::class);
 
 });
 
+//Assistant Group Accountant
+Route::middleware(['auth', 'role:Assistant Group Accountant'])->name('assistant-group-accountant.')->prefix('assistant-group-accountant')->group(function () {
+    Route::get('/market',[MarketController::class,'index'])->name('market.index');
+    Route::get('/supplier/{id}', [SupplierController::class,'show'])->name('suppliers.show');
+    Route::get('/requisition',[RequisitionController::class,'index'])->name('requisition.index');
+    Route::get('/requisition/{id}',[RequisitionController::class,'show'])->name('requisition.show');
+    Route::patch('/summary/{id}/approve',[SummaryController::class,'approve'])->name('summary.approve');
+    Route::patch('/quotation/{id}/approve',[QuatationController::class,'approve'])->name('quotation.approve');
+    Route::resource('/quatations',QuatationController::class);
+    Route::resource('/summaries',SummaryController::class);
+    
+});
 
+//Profile
 Route::middleware('auth')->group(function () {
-
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

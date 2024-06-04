@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Quotation;
+use App\Models\Requisition;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class QuatationController extends Controller
@@ -20,21 +22,35 @@ class QuatationController extends Controller
                 $query->where('name','LIKE','%'.$item.'%');
             })->paginate(10);
         }
+        
         if(Auth::user()->hasRole('Procurement Officer')){
-            $quatations = Quotation::when($request->item,function($query,$item){
+            $quatations = Quotation::with('user')->when($request->item,function($query,$item){
                 $query->where('name','LIKE','%'.$item.'%');
             })->paginate(10);
+
         }
-        
+
+        if(Auth::user()->hasRole('Assistant Group Accountant')){
+            $quatations = Quotation::with('user')->when($request->item,function($query,$item){
+                $query->where('name','LIKE','%'.$item.'%');
+            })->paginate(10);
+
+        }
+
+
+        // $suppliers = User::find($quatation->user_id);
+       
         return Inertia::render('ProcurementOfficer/Quatations/Index', compact('quatations'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function approve(string $id)
     {
         //
+        $quatation = Quotation::find($id);
+        $quatation->approved = 1;
+        // dd($requisition);
+        $quatation->save();
+        return redirect()->back();
     }
 
     /**
@@ -68,7 +84,22 @@ class QuatationController extends Controller
     public function show(string $id)
     {
         
+        // Retrieve the quotation
         $quatation = Quotation::find($id);
+
+        // Check if the quotation is found
+        if ($quatation) {
+            // Retrieve the associated requisition
+            $requisition = Requisition::find($quatation->requisition_id);
+
+            // If the associated requisition is found
+            if ($requisition) {
+                // Merge the requisition data into the quotation variable
+                $quatation->requisition = $requisition;
+            }
+}
+
+        // dd($quatation);
         return Inertia::render('ProcurementOfficer/Quatations/Show', compact('quatation'));
     }
 
@@ -93,6 +124,7 @@ class QuatationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Quotation::find($id)->delete();
+        return to_route('supplier.quatations.index');
     }
 }

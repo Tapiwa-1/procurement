@@ -64,4 +64,12 @@ class User extends Authenticatable
     public function quatation(){
         return $this->hasMany(Quotation::class);
     }
+
+    public function summary(){
+        return $this->hasMany(Summary::class);
+    }
+
+    public function taxInvoice(){
+        return $this->hasMany(TaxInvoice::class);
+    }
 }

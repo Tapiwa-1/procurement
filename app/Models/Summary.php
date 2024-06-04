@@ -5,14 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Quotation extends Model
+class Summary extends Model
 {
     use HasFactory;
     protected $fillable = [
         'user_id',
+        'requisition_id',
         'title',
-        'description',
-        'requisition_id'
+        'content',
+        'approved',
+        // Add other relevant fields
     ];
 
     public function user()
@@ -20,9 +22,7 @@ class Quotation extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function requisition()
-    {
+    public function requisition(){
         return $this->belongsTo(Requisition::class);
     }
-   
 }

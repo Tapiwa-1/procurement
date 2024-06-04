@@ -82,7 +82,9 @@ defineProps({
                                     
                                     <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                         <dt class="text-sm font-medium text-blue-500 underline">
-                                            <Link :href="route('admin.suppliers.index')">Back</Link>
+                                            <Link v-if="$page.props.user.userRoles.includes('admin')" :href="route('admin.suppliers.index')">Back</Link>
+                                            <Link  v-if="$page.props.user.userRoles.includes('Procurement Officer')" :href="route('procurement-officer.quatations.index')">Back</Link>
+                                            
                                         </dt>
                                     
                                     </div>

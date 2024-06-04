@@ -24,4 +24,13 @@ class Requisition extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function quotation()
+    {
+        return $this->hasMany(Quotation::class);
+    }
+    public function summary()
+    {
+        return $this->hasMany(Summary::class);
+    }
 }

@@ -70,7 +70,25 @@
                         <span class="pl-2">Quatations</span>
                     </NavLink>
 
-                    <NavLink :href="route('procurement-officer.quatations.index')" :active="$page.url == '/procurement-officer/quatations'">
+                    <NavLink :href="route('procurement-officer.summaries.index')" :active="$page.url == '/procurement-officer/summaries'">
+                        <BoltIcon class="h-5 w-5 text-gray-900 " /> 
+                        <span class="pl-2">Summary</span>
+                    </NavLink>
+                    
+                </template>
+
+                <template v-if="$page.props.user.userRoles.includes('Assistant Group Accountant')" >
+                    <NavLink :href="route('assistant-group-accountant.requisition.index')" :active="$page.url == '/assistant-group-accountant/requisition'">
+                        <DocumentIcon class="h-5 w-5 text-gray-900 " /> 
+                        <span class="pl-2">Requisition</span>
+                    </NavLink>
+                    
+                    <NavLink :href="route('assistant-group-accountant.quatations.index')" :active="$page.url == '/assistant-group-accountant/quatations'">
+                        <CurrencyDollarIcon class="h-5 w-5 text-gray-900 " /> 
+                        <span class="pl-2">Quatations</span>
+                    </NavLink>
+
+                    <NavLink :href="route('assistant-group-accountant.summaries.index')" :active="$page.url == '/assistant-group-accountant/summaries'">
                         <BoltIcon class="h-5 w-5 text-gray-900 " /> 
                         <span class="pl-2">Summary</span>
                     </NavLink>

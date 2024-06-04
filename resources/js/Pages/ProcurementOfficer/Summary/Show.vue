@@ -12,7 +12,7 @@ import TextInput from '@/Components/TextInput.vue';
 
 let item = ref(null)
 defineProps({
-    quatation: Object
+    summary: Object
 })
 
 </script>
@@ -29,7 +29,7 @@ defineProps({
                         <div class="bg-white w-full shadow overflow-hidden sm:rounded-lg">
                             <div class="px-4 py-5 sm:px-6">
                                 <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                    {{ quatation.title }}
+                                    {{ summary.title }}
                                 </h3>
                                 <p class="mt-1 max-w-2xl text-sm text-gray-500">
                                     Details and informations about the quatation.
@@ -37,28 +37,22 @@ defineProps({
                             </div>
                             <div class="border-t border-gray-200">
                                 <dl>
+                                
                                     <div v-if="$page.props.user.userRoles.includes('Procurement Officer')"  class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                         <dt class="text-sm font-medium text-gray-500">
                                             Requisition Title
                                         </dt>
                                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                            <Link :href="route('procurement-officer.requisition.show', quatation.requisition.id)">{{  quatation.requisition.title }}</Link>
+                                            <Link :href="route('procurement-officer.requisition.show', summary.requisition.id)">{{  summary.requisition.title }}</Link>
                                         </dd>
                                     </div>
+
                                     <div v-if="$page.props.user.userRoles.includes('Assistant Group Accountant')"  class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                         <dt class="text-sm font-medium text-gray-500">
                                             Requisition Title
                                         </dt>
                                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                            <Link :href="route('assistant-group-accountant.requisition.show', quatation.requisition.id)">{{  quatation.requisition.title }}</Link>
-                                        </dd>
-                                    </div>
-                                    <div v-if="$page.props.user.userRoles.includes('Vendor/Supplier')"  class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                        <dt class="text-sm font-medium text-gray-500">
-                                            Requisition Title
-                                        </dt>
-                                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                            <Link :href="route('supplier.requisition.show', quatation.requisition.id)">{{  quatation.requisition.title }}</Link>
+                                            <Link :href="route('assistant-group-accountant.requisition.show', summary.requisition.id)">{{  summary.requisition.title }}</Link>
                                         </dd>
                                     </div>
                                     <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -66,41 +60,31 @@ defineProps({
                                             Title
                                         </dt>
                                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                            {{ quatation.title  }}
+                                            {{ summary.title  }}
                                         </dd>
                                     </div>
-                                    <div class="bg-white px-10 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                       <div class="m-4" v-html="quatation.description"> 
+                                    <div class="bg-white px-10 py-5 ">
+                                       <div class="m-4" v-html="summary.content"> 
                                     </div>
                                     </div>
                                     <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                         <dt v-if="$page.props.user.userRoles.includes('Assistant Group Accountant') "   class="text-sm font-medium text-gray-500">
                                             Approved
                                         </dt>
-                                        <dt v-if="$page.props.user.userRoles.includes('Vendor/Supplier') "   class="text-sm font-medium text-gray-500">
-                                            Approved
-                                        </dt>
                                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
     
                                             <div v-if="$page.props.user.userRoles.includes('Assistant Group Accountant') " class="">
-                                                <div v-if="quatation.approved  == 1" class="text-green-600 text-bold">
+                                                <div v-if="summary.approved  == 1" class="text-green-600 text-bold">
                                                     Yes
                                                 </div>
                                                 <div v-else class="text-red-600 text-bold">
-                                                    
-                                                    <Link method="patch" :href="route('assistant-group-accountant.quotation.approve', quatation.id)">Click to approve</Link>
+                                                 
+                                                    <Link method="patch" :href="route('assistant-group-accountant.summary.approve', summary.id)">Click to approve</Link>
                                                 </div>
                                             </div>
-                                            <div v-if="$page.props.user.userRoles.includes('Vendor/Supplier') " class="">
-                                                <div v-if="quatation.approved  == 1" class="text-green-600 text-bold">
-                                                    Yes
-                                                </div>
-                                                <div v-else class="text-red-600 text-bold">
-                                                    
-                                                    No
-                                                </div>
-                                            </div>
-                                           
+                                            <!-- <div class="">
+                                                <PrimaryButton v-if="$page.props.user.userRoles.includes('Vendor/Supplier')"  @click="showAddRoleOverlay = true" >Create  Quatation</PrimaryButton>
+                                            </div> -->
                                         </dd>
 
                                         
@@ -114,7 +98,7 @@ defineProps({
                                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
     
                                             <div v-if="$page.props.user.userRoles.includes('Procurement Officer') " class="">
-                                                <div v-if="quatation.approved  == 1" class="text-green-600 text-bold">
+                                                <div v-if="summary.approved  == 1" class="text-green-600 text-bold">
                                                     Yes
                                                 </div>
                                                 <div v-else class="text-red-600 text-bold">
@@ -133,8 +117,7 @@ defineProps({
                                     <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                         <dt class="text-sm font-medium text-blue-500 underline">
                                             <!-- <Link  v-if="$page.props.user.userRoles.includes('Receptionist')" :href="route('receptionist.requisition.index')">Back</Link> -->
-                                            <Link  v-if="$page.props.user.userRoles.includes('Procurement Officer')" :href="route('procurement-officer.quatations.index')">Back</Link>
-                                            <Link  v-if="$page.props.user.userRoles.includes('Vendor/Supplier')" :href="route('supplier.quatations.index')">Back</Link>
+                                            <!-- <Link  v-if="$page.props.user.userRoles.includes('Procurement Officer')" :href="route('procurement-officer.quatations.index')">Back</Link> -->
                                             
                                         </dt>
                                     
