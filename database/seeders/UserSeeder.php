@@ -35,25 +35,29 @@ class UserSeeder extends Seeder
         $user= User::factory()->create([
             'name' => 'Supplier1',
             'email' => 'Supplier1@example.com',
-            
+            'address' => 'Zimbabwe, Harare, Jason Moyo Avenue, Building 123',
+            'phone' => '+263123456789'
         ])->assignRole('Vendor/Supplier');
-
+        
         $user= User::factory()->create([
             'name' => 'Supplier2',
             'email' => 'Supplier2@example.com',
-            
+            'address' => 'Zimbabwe, Bulawayo, Leopold Takawira Avenue, Building 456',
+            'phone' => '+263987654321'
         ])->assignRole('Vendor/Supplier');
-
+        
         $user= User::factory()->create([
             'name' => 'Supplier3',
             'email' => 'Supplier3@example.com',
-            
+            'address' => 'Zimbabwe, Mutare, Robert Mugabe Road, Building 789',
+            'phone' => '+263555555555'
         ])->assignRole('Vendor/Supplier');
-
+        
         $user= User::factory()->create([
             'name' => 'Supplier4',
             'email' => 'Supplier4@example.com',
-            
+            'address' => 'Zimbabwe, Gweru, Josiah Tongogara Street, Building 1011',
+            'phone' => '+263111111111'
         ])->assignRole('Vendor/Supplier');
 
         foreach ($roles as $role) {
