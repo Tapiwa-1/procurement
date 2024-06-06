@@ -1,97 +1,104 @@
 # Online Procurement System Overview
+A System designed to facilitate virtual interaction of metbank and its external stakeholders.
 
-The Online Procurement System is designed to facilitate virtual interaction between Metbank and its external stakeholders.
+# Adminstrator
 
-## Administrator
+## Features
+- System Overview
+<img  src="/public/img/overview.png"/> 
+- Role Management
+<img  src="/public/img/roleindex.png"/> 
+<img  src="/public/img/addrole.png"/> 
+- User Management
+<img  src="/public/img/userindex.png"/>
+<img  src="/public/img/useraddrole.png"/>
 
-### Features
+# Procurement Process
 
-- **System Overview**
-  ![System Overview](/public/img/overview.png) 
-- **Role Management**
-  ![Role Management Index](/public/img/roleindex.png) 
-  ![Add Role](/public/img/addrole.png) 
-- **User Management**
-  ![User Management Index](/public/img/userindex.png)
-  ![User Add Role](/public/img/useraddrole.png)
+## Receptionist
+Procurement Process start as soon as receptionist create a requisition to the procurement officer for the goods needed within the organisation, filling in requisition title, goods, estimated cost and quantity needed.
+<img  src="/public/img/1.png"/> 
 
-## Procurement Process
+## Procurement Officer
+After the requisition has been successfully created, Procurement officer will then approve the requisition and it will then be published to suppliers for bidding process
+<img  src="/public/img/2.png"/>
 
-### Receptionist
+## Supplier
+ - Supplier can browse requisition and propose a quotation of the price of good to be purchase.
+ <img  src="/public/img/4.png"/>
+ - Supplier can browse requisition in mored details
+ <img  src="/public/img/5.png"/>
+  - Supplier can create a quatation based on that requisition
+ <img  src="/public/img/6.png"/>
+ - Supplier can browser all their quptations that are read to be approved by the Assistant Group Accountant
+ <img  src="/public/img/7.png"/>
 
-The procurement process begins when the receptionist creates a requisition to the procurement officer for the required goods within the organization, providing details such as requisition title, goods, estimated cost, and quantity needed.
-![Receptionist Requisition](/public/img/1.png) 
+ - Supplier can add, browse, edit and delete their stock
+ <img  src="/public/img/3.png"/>
+ - Supplier can upload and remove their tax Clearance form
+<img  src="/public/img/7.png"/>
 
-### Procurement Officer
+## Procurement Officer
+Procurement officer check if the supplier have tax certificate or not
+<img  src="/public/img/11.png"/>
+Procurement officer's duty is to browse all quatations based on the requision and writes a summary of the quatations  to Assistant Group Accountant
+<img  src="/public/img/9.png"/>
+<img  src="/public/img/10.png"/>
 
-Upon successful creation of the requisition, the procurement officer approves it, and it is then published to suppliers for the bidding process.
-![Procurement Officer Approval](/public/img/2.png)
 
-### Supplier
+## Assistant Group Accountant
+- Assistance accounting group's duty is to cross check if the supplier has tax clearance certificate or not. Checks the comparative summary created by procurement officers and approves it and select best quatation for invoice creation
+<img  src="/public/img/11.png"/>
+- Browse all quotations
+<img  src="/public/img/13.png"/>
+- approve quotations
+<img  src="/public/img/14.png"/>
 
-- **Browsing Requisitions**: Suppliers can browse requisitions and propose quotations for the price of goods to be purchased.
-  ![Supplier Browse Requisitions](/public/img/4.png)
-- **Detailed Requisition View**: Suppliers can view requisitions in more detail.
-  ![Detailed Requisition View](/public/img/5.png)
-- **Quotation Creation**: Suppliers can create a quotation based on the requisition.
-  ![Quotation Creation](/public/img/6.png)
-- **Manage Stock**: Suppliers can add, browse, edit, and delete their stock.
-  ![Manage Stock](/public/img/3.png)
-- **Tax Clearance**: Suppliers can upload and remove their tax clearance form.
-  ![Tax Clearance](/public/img/7.png)
-
-### Procurement Officer (Again)
-
-- **Tax Certificate Check**: The procurement officer checks if the supplier has a tax certificate.
-  ![Tax Certificate Check](/public/img/11.png)
-- **Summary Creation**: The procurement officer browses all quotations based on the requisition and writes a summary of the quotations to the Assistant Group Accountant.
-  ![Summary Creation](/public/img/9.png)
-  ![Summary Creation](/public/img/10.png)
-
-### Assistant Group Accountant
-
-- **Tax Clearance Check**: Checks if the supplier has a tax clearance certificate and approves the comparative summary created by procurement officers, selecting the best quotation for invoice creation.
-  ![Tax Clearance Check](/public/img/11.png)
-- **Browse Quotations**: Browses all quotations.
-  ![Browse Quotations](/public/img/13.png)
-- **Approve Quotations**: Approves quotations.
-  ![Approve Quotations](/public/img/14.png)
-
-### Supplier (Again)
-
-- **Tax Invoice Creation**: The supplier creates a tax invoice for the approved quotation.
-  ![Tax Invoice Creation](/public/img/15.png)
-- **Browse Tax Invoice List**: The supplier browses the tax invoice list with their current status.
-  ![Browse Tax Invoice List](/public/img/16.png)
-- **Browse Tax Invoice Details**: The supplier browses tax invoice details.
-  ![Browse Tax Invoice Details](/public/img/17.png)
+## Supplier
+- Supplier then create a tax invoice of the the quotation that was approved by the Assistant Group Accountant
+<img  src="/public/img/15.png"/>
+- Supplier then browse the Tax Invoce list with their current status
+<img  src="/public/img/16.png"/>
+- Supplier then browse the Tax Invoce Details
+<img  src="/public/img/17.png"/>
 
 ## Verification Assistant
+- Checks Requisition, Supplier Invoice and tax Clearance, Quatation and Summary
+- After He/She satisfied the approves the Tax Invoice
 
-- **Verification Process**: Checks requisitions, supplier invoices and tax clearance, quotations, and summary. After satisfaction, approves the tax invoice.
-  ![Verification Process](/public/img/18.png)
-  ![Verification Process](/public/img/19.png)
+<img  src="/public/img/18.png"/>
+<img  src="/public/img/19.png"/>
 
 ## Group Accountant
+- Checks Requisition, Supplier Invoice and tax Clearance, Quatation and Summary
 
-- **Verification Process**: Checks requisitions, supplier invoices and tax clearance, quotations, and summary. Also verifies if the invoice is within budget. After satisfaction, approves the tax invoice.
-  ![Verification Process](/public/img/20.png)
-  ![Verification Process](/public/img/21.png)
+- Also verify if the Invoice is within their budget and etc
+- After He/She satisfied the approves the Tax Invoice
+
+<img  src="/public/img/20.png"/>
+<img  src="/public/img/21.png"/>
 
 ## Verification Officer
+- Checks Requisition, Supplier Invoice and tax Clearance, Quatation and Summary
+- After He/She satisfied the approves the Tax Invoice
 
-- **Verification Process**: Checks requisitions, supplier invoices and tax clearance, quotations, and summary. After satisfaction, approves the tax invoice.
-  ![Verification Process](/public/img/21.png)
-  ![Verification Process](/public/img/22.png)
+<img  src="/public/img/21.png"/>
+<img  src="/public/img/22.png"/>
 
-## FM Payments Clerk
+## Fm Payments teclar
+- Checks Requisition, Supplier Invoice and tax Clearance, Quatation and Summary
+- After He/She satisfied the approves the Tax Invoice
 
-- **Verification Process**: Checks requisitions, supplier invoices and tax clearance, quotations, and summary. After satisfaction, approves the tax invoice.
-  ![Verification Process](/public/img/21.png)
-  ![Verification Process](/public/img/23.png)
+<img  src="/public/img/21.png"/>
+<img  src="/public/img/23.png"/>
 
 ## General Manager
+- Final stage of the check out for paymenet initiation
+- Checks Requisition, Supplier Invoice and tax Clearance, Quatation and Summary
+- After He/She satisfied the approves the Tax Invoice
 
-- **Final Approval**: The final stage of the checkout for payment initiation. Checks requisitions, supplier invoices and tax clearance, quotations, and summary. After satisfaction, approves the tax invoice.
-  ![Final Approval](/public/img/24.png)
-  ![Final Approval](/public/img/25.png)
+<img  src="/public/img/24.png"/>
+<img  src="/public/img/25.png"/>
+
+
+
