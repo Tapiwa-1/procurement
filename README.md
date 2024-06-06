@@ -82,14 +82,14 @@ Procurement officer's duty is to browse all quatations based on the requision an
 - Checks Requisition, Supplier Invoice and tax Clearance, Quatation and Summary
 - After He/She satisfied the approves the Tax Invoice
 
-<img  src="/public/img/21.png"/>
+<img  src="/public/img/20.png"/>
 <img  src="/public/img/22.png"/>
 
 ## Fm Payments teclar
 - Checks Requisition, Supplier Invoice and tax Clearance, Quatation and Summary
 - After He/She satisfied the approves the Tax Invoice
 
-<img  src="/public/img/21.png"/>
+<img  src="/public/img/20.png"/>
 <img  src="/public/img/23.png"/>
 
 ## General Manager
