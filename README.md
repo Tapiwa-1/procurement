@@ -98,7 +98,7 @@ Procurement officer's duty is to browse all quatations based on the requision an
 - After He/She satisfied the approves the Tax Invoice
 
 <img  src="/public/img/24.png"/>
-<img  src="/public/img/24.png"/>
+<img  src="/public/img/25.png"/>
 
 
 
