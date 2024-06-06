@@ -18,9 +18,11 @@ class QuatationController extends Controller
     public function index(Request $request)
     {
         if(Auth::user()->hasRole('Vendor/Supplier')){
-            $quatations = Quotation::where('user_id', Auth::user()->id)->when($request->item,function($query,$item){
+            $quatations = Quotation::where('user_id',Auth::user()->id)->where('user_id', Auth::user()->id)->when($request->item,function($query,$item){
                 $query->where('name','LIKE','%'.$item.'%');
             })->paginate(10);
+
+            return Inertia::render('ProcurementOfficer/Quatations/Index', compact('quatations'));
         }
         
         if(Auth::user()->hasRole('Procurement Officer')){
@@ -30,12 +32,11 @@ class QuatationController extends Controller
 
         }
 
-        if(Auth::user()->hasRole('Assistant Group Accountant')){
-            $quatations = Quotation::with('user')->when($request->item,function($query,$item){
+        
+        $quatations = Quotation::with('user')->when($request->item,function($query,$item){
                 $query->where('name','LIKE','%'.$item.'%');
             })->paginate(10);
 
-        }
 
 
         // $suppliers = User::find($quatation->user_id);
@@ -66,11 +67,12 @@ class QuatationController extends Controller
             
             // Add validation rules for other fields
         ]);
-
-        // dd( $request->requisition_id);
+        
         Quotation::create([
             'requisition_id' => $request->requisition_id,
             'title' => $request->title,
+            'unit_price'=>$request->unit_price,
+            'quantity'=>$request->quantity,
             'description' => $request->input('description'),
             'user_id' => Auth::user()->id,  
         ]);
@@ -85,21 +87,8 @@ class QuatationController extends Controller
     {
         
         // Retrieve the quotation
-        $quatation = Quotation::find($id);
+        $quatation = Quotation::with(['user','requisition','summary'])->find($id);
 
-        // Check if the quotation is found
-        if ($quatation) {
-            // Retrieve the associated requisition
-            $requisition = Requisition::find($quatation->requisition_id);
-
-            // If the associated requisition is found
-            if ($requisition) {
-                // Merge the requisition data into the quotation variable
-                $quatation->requisition = $requisition;
-            }
-}
-
-        // dd($quatation);
         return Inertia::render('ProcurementOfficer/Quatations/Show', compact('quatation'));
     }
 

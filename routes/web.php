@@ -13,6 +13,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Receptionist\RequisitionController;
 use App\Http\Controllers\Supplier\StockContoller;
 use App\Http\Controllers\Supplier\TaxClearanceController;
+use App\Http\Controllers\Supplier\TaxInvoiceController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -55,6 +56,7 @@ Route::middleware([ 'auth','role:Vendor/Supplier'])->name('supplier.')->prefix('
     Route::get('/requisition',[RequisitionController::class,'index'])->name('requisition.index');
     Route::get('/requisition/{id}',[RequisitionController::class,'show'])->name('requisition.show');
     Route::resource('/quatations',QuatationController::class);
+    Route::resource('/tax-invoice',TaxInvoiceController::class);
 });
 
 
@@ -74,6 +76,7 @@ Route::middleware(['auth', 'role:Procurement Officer'])->name('procurement-offic
     Route::patch('/requisition/{id}/approve',[ApprovalController::class,'approve'])->name('requisition.approve');
     Route::resource('/quatations',QuatationController::class);
     Route::resource('/summaries',SummaryController::class);
+    
 
 });
 
@@ -87,7 +90,77 @@ Route::middleware(['auth', 'role:Assistant Group Accountant'])->name('assistant-
     Route::patch('/quotation/{id}/approve',[QuatationController::class,'approve'])->name('quotation.approve');
     Route::resource('/quatations',QuatationController::class);
     Route::resource('/summaries',SummaryController::class);
-    
+});
+
+
+//Verification Assistant
+Route::middleware(['auth', 'role:Verification Assistant'])->name('verification-assistant.')->prefix('verification-assistant')->group(function () {
+    Route::get('/market',[MarketController::class,'index'])->name('market.index');
+    Route::get('/supplier/{id}', [SupplierController::class,'show'])->name('suppliers.show');
+    Route::get('/requisition',[RequisitionController::class,'index'])->name('requisition.index');
+    Route::get('/requisition/{id}',[RequisitionController::class,'show'])->name('requisition.show');
+    Route::patch('/summary/{id}/approve',[SummaryController::class,'approve'])->name('summary.approve');
+    Route::patch('/quotation/{id}/approve',[QuatationController::class,'approve'])->name('quotation.approve');
+    Route::resource('/quatations',QuatationController::class);
+    Route::resource('/summaries',SummaryController::class); 
+    Route::resource('/tax-invoice',TaxInvoiceController::class);
+    Route::patch('/tax-invoice/{id}/approve',[TaxInvoiceController::class,'verificationAssistantApproved'])->name('taxinvoice.approve');
+});
+
+//Verification Officer
+Route::middleware(['auth', 'role:Verification Officer'])->name('verification-officer.')->prefix('verification-officer')->group(function () {
+    Route::get('/market',[MarketController::class,'index'])->name('market.index');
+    Route::get('/supplier/{id}', [SupplierController::class,'show'])->name('suppliers.show');
+    Route::get('/requisition',[RequisitionController::class,'index'])->name('requisition.index');
+    Route::get('/requisition/{id}',[RequisitionController::class,'show'])->name('requisition.show');
+    Route::patch('/summary/{id}/approve',[SummaryController::class,'approve'])->name('summary.approve');
+    Route::patch('/quotation/{id}/approve',[QuatationController::class,'approve'])->name('quotation.approve');
+    Route::resource('/quatations',QuatationController::class);
+    Route::resource('/summaries',SummaryController::class); 
+    Route::resource('/tax-invoice',TaxInvoiceController::class);
+    Route::patch('/tax-invoice/{id}/approve',[TaxInvoiceController::class,'verificationOfficerApproved'])->name('taxinvoice.approve');
+});
+
+//Group Accountant
+Route::middleware(['auth', 'role:Group Accountant'])->name('group-accountant.')->prefix('group-accountant')->group(function () {
+    Route::get('/market',[MarketController::class,'index'])->name('market.index');
+    Route::get('/supplier/{id}', [SupplierController::class,'show'])->name('suppliers.show');
+    Route::get('/requisition',[RequisitionController::class,'index'])->name('requisition.index');
+    Route::get('/requisition/{id}',[RequisitionController::class,'show'])->name('requisition.show');
+    Route::patch('/summary/{id}/approve',[SummaryController::class,'approve'])->name('summary.approve');
+    Route::patch('/quotation/{id}/approve',[QuatationController::class,'approve'])->name('quotation.approve');
+    Route::resource('/quatations',QuatationController::class);
+    Route::resource('/summaries',SummaryController::class); 
+    Route::resource('/tax-invoice',TaxInvoiceController::class);
+    Route::patch('/tax-invoice/{id}/approve',[TaxInvoiceController::class,'groupAccountantApproved'])->name('taxinvoice.approve');
+});
+
+//Fm Payments teclar
+Route::middleware(['auth', 'role:Fm Payments teclar'])->name('fm-payments-teclar.')->prefix('fm-payments-teclar')->group(function () {
+    Route::get('/market',[MarketController::class,'index'])->name('market.index');
+    Route::get('/supplier/{id}', [SupplierController::class,'show'])->name('suppliers.show');
+    Route::get('/requisition',[RequisitionController::class,'index'])->name('requisition.index');
+    Route::get('/requisition/{id}',[RequisitionController::class,'show'])->name('requisition.show');
+    Route::patch('/summary/{id}/approve',[SummaryController::class,'approve'])->name('summary.approve');
+    Route::patch('/quotation/{id}/approve',[QuatationController::class,'approve'])->name('quotation.approve');
+    Route::resource('/quatations',QuatationController::class);
+    Route::resource('/summaries',SummaryController::class); 
+    Route::resource('/tax-invoice',TaxInvoiceController::class);
+    Route::patch('/tax-invoice/{id}/approve',[TaxInvoiceController::class,'fmPaymentsTeclarApproved'])->name('taxinvoice.approve');
+});
+
+// general Manager
+Route::middleware(['auth', 'role:General Manager'])->name('general-manager.')->prefix('general-manager')->group(function () {
+    Route::get('/market',[MarketController::class,'index'])->name('market.index');
+    Route::get('/supplier/{id}', [SupplierController::class,'show'])->name('suppliers.show');
+    Route::get('/requisition',[RequisitionController::class,'index'])->name('requisition.index');
+    Route::get('/requisition/{id}',[RequisitionController::class,'show'])->name('requisition.show');
+    Route::patch('/summary/{id}/approve',[SummaryController::class,'approve'])->name('summary.approve');
+    Route::patch('/quotation/{id}/approve',[QuatationController::class,'approve'])->name('quotation.approve');
+    Route::resource('/quatations',QuatationController::class);
+    Route::resource('/summaries',SummaryController::class); 
+    Route::resource('/tax-invoice',TaxInvoiceController::class);
+    Route::patch('/tax-invoice/{id}/approve',[TaxInvoiceController::class,'generalManagerApproved'])->name('taxinvoice.approve');
 });
 
 //Profile

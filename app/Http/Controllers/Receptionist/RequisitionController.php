@@ -19,6 +19,13 @@ class RequisitionController extends Controller
         $requisitions = Requisition::when($request->item,function($query,$item){
             $query->where('name','LIKE','%'.$item.'%');
         })->paginate(10);
+
+        if(Auth::user()->hasRole('Vendor/Supplier')){
+            $requisitions = Requisition::where('approved',1)->when($request->item,function($query,$item){
+                $query->where('name','LIKE','%'.$item.'%');
+            })->paginate(10);
+        }
+
         return Inertia::render('Receptionist/Requisitions/Index', compact('requisitions'));
     }
 

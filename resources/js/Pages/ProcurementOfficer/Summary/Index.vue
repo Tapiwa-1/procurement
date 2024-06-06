@@ -127,7 +127,32 @@ function filterOptions() {
                                         <!-- Assistant Group Accountant -->
                                         <template v-if="$page.props.user.userRoles.includes('Assistant Group Accountant')">
                                             <Link as="button" :href="route('assistant-group-accountant.summaries.show', summary.id)"  class="font-medium text-green-600 mr-2 dark:text-green-500 hover:underline">Show</Link> 
-                                        
+                                        </template>
+                                        <!-- Verification Assistant -->
+                                        <!-- verification-assistant -->
+                                        <template v-if="$page.props.user.userRoles.includes('Verification Assistant')">
+                                            <Link as="button" :href="route('verification-assistant.summaries.show', summary.id)"  class="font-medium text-green-600 mr-2 dark:text-green-500 hover:underline">Show</Link> 
+                                        </template>
+
+                                        <!-- Verification Officer -->
+                                        <!-- verification-officer -->
+                                        <template v-if="$page.props.user.userRoles.includes('Verification Officer')">
+                                            <Link as="button" :href="route('verification-officer.summaries.show', summary.id)"  class="font-medium text-green-600 mr-2 dark:text-green-500 hover:underline">Show</Link> 
+                                        </template>
+                                        <!-- Group Accountant -->
+                                        <!-- group-accountant -->
+                                        <template v-if="$page.props.user.userRoles.includes('Group Accountant')">
+                                            <Link as="button" :href="route('group-accountant.summaries.show', summary.id)"  class="font-medium text-green-600 mr-2 dark:text-green-500 hover:underline">Show</Link> 
+                                        </template>
+                                        <!-- Fm Payments teclar -->
+                                        <!-- fm-payments-teclar -->
+                                        <template v-if="$page.props.user.userRoles.includes('Fm Payments teclar')">
+                                            <Link as="button" :href="route('fm-payments-teclar.summaries.show', summary.id)"  class="font-medium text-green-600 mr-2 dark:text-green-500 hover:underline">Show</Link> 
+                                        </template>
+                                        <!-- General Manager -->
+                                        <!-- general-manager -->
+                                        <template v-if="$page.props.user.userRoles.includes('General Manager')">
+                                            <Link as="button" :href="route('general-manager.summaries.show', summary.id)"  class="font-medium text-green-600 mr-2 dark:text-green-500 hover:underline">Show</Link> 
                                         </template>
                                         
                                     </td>

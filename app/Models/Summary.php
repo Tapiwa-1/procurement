@@ -25,4 +25,8 @@ class Summary extends Model
     public function requisition(){
         return $this->belongsTo(Requisition::class);
     }
+
+    public function quotation(){
+        return $this->belongsTo(Quotation::class);
+    }
 }

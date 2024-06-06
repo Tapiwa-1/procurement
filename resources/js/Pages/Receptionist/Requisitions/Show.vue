@@ -22,7 +22,8 @@ const form = useForm({
     requisition_id: props.requisition.id,
     title:"",
     description:"",
-   
+    unit_price:"",
+    quantity:"",
 });
 
 const showAddRoleOverlay = ref(null)
@@ -175,11 +176,39 @@ const closeModal = () => {
                                             <InputError class="mt-2" :message="form.errors.title" />
                                         </div>
                                        
+                                        
                                         <div>
                                             <InputLabel for="name" value="Description" />
 
-                                            <QuillEditor  v-model:content="form.description" content-type="html"  class=" min-h-96" theme="snow" />
-                                            <InputError class="mt-2 " :message="form.errors.description" />
+                                            <textarea id="message"  v-model="form.description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
+
+                                            <InputError class="mt-2" :message="form.errors.description" />
+                                        </div>   
+                                        <div>
+                                            <InputLabel for="email" value="Unit price" />
+
+                                            <TextInput
+                                                type="number"
+                                                :step="0.01"
+                                                class="mt-1 block w-full"
+                                                v-model="form.unit_price"
+                                            />
+                                            <InputError class="mt-2" :message="form.errors.unit_price" />
+                                        </div>
+                                        <div>
+                                            <InputLabel for="email" value="Quantity" />
+
+                                            <TextInput
+                                             
+                                                type="number"
+                                                
+                                                class="mt-1 block w-full"
+                                                v-model="form.quantity"
+
+                                               
+                                        
+                                            />
+                                            <InputError class="mt-2" :message="form.errors.quantity" />
                                         </div>           
                                         <div class="flex items-center justify-end mt-4">
                                             <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">

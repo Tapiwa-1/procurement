@@ -21,10 +21,11 @@ return new class extends Migration
             $table->foreign('requisition_id')->references('id')->on('requisitions')->onDelete('cascade');
 
             $table->unsignedBigInteger('quotation_id');
-            $table->foreign('quotation_id')->references('id')->on('quotation')->onDelete('cascade');
+            $table->foreign('quotation_id')->references('id')->on('quotations')->onDelete('cascade');
 
             $table->string('invoice_number')->unique();
             $table->string('customer_name');
+            $table->string('title');
             $table->string('description');
             $table->integer('quantity');
             $table->decimal('unit_price', 10, 2);
@@ -35,6 +36,7 @@ return new class extends Migration
             $table->boolean('verification_officer_approved')->default(false);
             $table->boolean('group_accountant_approved')->default(false);
             $table->boolean('fm_payments_teclar_approved')->default(false);
+            $table->boolean('general_manager_approved')->default(false);
             $table->timestamps();
         });
     }

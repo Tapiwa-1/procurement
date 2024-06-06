@@ -12,7 +12,9 @@ class Quotation extends Model
         'user_id',
         'title',
         'description',
-        'requisition_id'
+        'unit_price',
+        'quantity',
+        'requisition_id',
     ];
 
     public function user()
@@ -23,6 +25,12 @@ class Quotation extends Model
     public function requisition()
     {
         return $this->belongsTo(Requisition::class);
+    }
+    public function summary(){
+        return $this->belongsTo(Summary::class);
+    }
+    public function taxInvoice(){
+        return $this->hasMany(TaxInvoice::class);
     }
    
 }

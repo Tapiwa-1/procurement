@@ -84,15 +84,10 @@ const closeModal = () => {
                                         Title
                                     </th>
                                     
-                                    <th v-if="$page.props.user.userRoles.includes('Procurement Officer')" scope="col" class="px-6 py-3">
+                                    <th  scope="col" class="px-6 py-3">
                                         Action
                                     </th>
-                                    <th v-if="$page.props.user.userRoles.includes('Vendor/Supplier')" scope="col" class="px-6 py-3">
-                                        Action
-                                    </th>
-                                    <th v-if="$page.props.user.userRoles.includes('Assistant Group Accountant')" scope="col" class="px-6 py-3">
-                                        Action
-                                    </th>
+                                   
 
                                 </tr>
                             </thead>
@@ -121,6 +116,22 @@ const closeModal = () => {
                                         </template>
                                         <template v-if="$page.props.user.userRoles.includes('Assistant Group Accountant')">
                                             <Link as="button" :href="route('assistant-group-accountant.quatations.show', quatation.id)"  class="font-medium text-green-600 mr-2 dark:text-green-500 hover:underline">Show</Link> 
+                                        </template>
+                                        <template v-if="$page.props.user.userRoles.includes('Verification Assistant')">
+                                            <Link as="button" :href="route('verification-assistant.quatations.show', quatation.id)"  class="font-medium text-green-600 mr-2 dark:text-green-500 hover:underline">Show</Link> 
+                                        </template>
+                                        <template v-if="$page.props.user.userRoles.includes('Verification Officer')">
+                                            <Link as="button" :href="route('verification-officer.quatations.show', quatation.id)"  class="font-medium text-green-600 mr-2 dark:text-green-500 hover:underline">Show</Link> 
+                                        </template>
+                                        <template v-if="$page.props.user.userRoles.includes('Fm Payments teclar')">
+                                            <Link as="button" :href="route('fm-payments-teclar.quatations.show', quatation.id)"  class="font-medium text-green-600 mr-2 dark:text-green-500 hover:underline">Show</Link> 
+                                        </template>
+                                        <template v-if="$page.props.user.userRoles.includes('Group Accountant')">
+                                            <Link as="button" :href="route('group-accountant.quatations.show', quatation.id)"  class="font-medium text-green-600 mr-2 dark:text-green-500 hover:underline">Show</Link> 
+                                        </template>
+                                        <!-- General Manager -->
+                                        <template v-if="$page.props.user.userRoles.includes('General Manager')">
+                                            <Link as="button" :href="route('general-manager.quatations.show', quatation.id)"  class="font-medium text-green-600 mr-2 dark:text-green-500 hover:underline">Show</Link> 
                                         </template>
                                         <template v-if="$page.props.user.userRoles.includes('Vendor/Supplier')">
                                             <Link as="button" :href="route('supplier.quatations.show', quatation.id)"  class="font-medium text-green-600 mr-2 dark:text-green-500 hover:underline">Show</Link> 

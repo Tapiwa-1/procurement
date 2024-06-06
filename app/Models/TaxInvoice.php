@@ -13,7 +13,7 @@ class TaxInvoice extends Model
        'user_id',
        'requisition_id',
        'quotation_id',
-       'summary_id',
+       'title',
        'invoice_number',
        'customer_name',
        'description',
@@ -26,6 +26,7 @@ class TaxInvoice extends Model
        'verification_officer_approved',
        'group_accountant_approved',
        'fm_payments_teclar_approved',
+       'general_manager_approved',
     ];
 
     //This belongs to one user
@@ -40,7 +41,8 @@ class TaxInvoice extends Model
     }
 
     //this belongs to one quatation
-    public function quotatiom(){
+    public function quotation()
+    {
         return $this->belongsTo(Quotation::class);
     }
 

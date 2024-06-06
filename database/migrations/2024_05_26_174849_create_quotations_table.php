@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('title');
             $table->text('description');
+            $table->integer('quantity');
+            $table->decimal('unit_price', 10, 2);
             $table->boolean('approved')->default(false);
             $table->timestamps();
         });
