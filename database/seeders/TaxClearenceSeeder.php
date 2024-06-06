@@ -17,14 +17,14 @@ class TaxClearenceSeeder extends Seeder
             'user_id' => 2,
             'file'=> '/file/1.png'
         ]);
-        // TaxClearance::create([
-        //     'user_id' => 3,
-        //     'file'=> '/file/2.png'
-        // ]);
-        // TaxClearance::create([
-        //     'user_id' => 4,
-        //     'file'=> '/file/3.png'
-        // ]);
+        TaxClearance::create([
+            'user_id' => 3,
+            'file'=> '/file/2.png'
+        ]);
+        TaxClearance::create([
+            'user_id' => 4,
+            'file'=> '/file/3.png'
+        ]);
       
     }
 }
