@@ -24,7 +24,7 @@ watch(item, value =>{
 </script>
 
 <template>
-    <Head title="Dashboard" />
+  
 
     <AuthenticatedLayout>
         <div class="py-12">

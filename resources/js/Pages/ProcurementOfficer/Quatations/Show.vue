@@ -48,7 +48,7 @@ const closeModal = () => {
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    
 
     <AuthenticatedLayout>
         <div class="py-12">

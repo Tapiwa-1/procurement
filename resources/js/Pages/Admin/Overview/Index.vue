@@ -1,5 +1,5 @@
 <template>
-    <Head title="Dashboard" />
+    
 
     <AuthenticatedLayout>
     

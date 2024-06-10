@@ -53,7 +53,7 @@ const closeModal = () => {
 </script>
 
 <template>
-    <Head title="Admin | Dashboard" />
+ 
     <section>
     <AuthenticatedLayout>
        

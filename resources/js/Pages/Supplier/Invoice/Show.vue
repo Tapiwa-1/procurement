@@ -1,8 +1,8 @@
 <template>
-    <Head title="Dashboard" />
+    
 
         <AuthenticatedLayout>
-        <div class="my-3 max-w-3/4">
+        <div class="">
                 <!-- Invoice Header -->
                 <div class="invoice-header">
                     <ApplicationLogo/>
@@ -36,7 +36,7 @@
                     <template v-if="$page.props.user.userRoles.includes('Verification Officer')">
                         <div class="invoice-item my-3">
                             <span>Supplier Name:</span>
-                            <Link><span>{{ taxInvoice.user.name }}</span></Link>
+                            <Link :href="route('verification-officer.suppliers.show', taxInvoice.user_id)"><span>{{ taxInvoice.user.name }}</span></Link>
                             
                         </div>
                         <div class="invoice-item my-3">
@@ -56,7 +56,7 @@
                     <template v-if="$page.props.user.userRoles.includes('Group Accountant')">
                         <div class="invoice-item my-3">
                             <span>Supplier Name:</span>
-                            <Link><span>{{ taxInvoice.user.name }}</span></Link>
+                            <Link :href="route('group-accountant.suppliers.show', taxInvoice.user_id)"><span>{{ taxInvoice.user.name }}</span></Link>
                             
                         </div>
                         <div class="invoice-item my-3">
@@ -76,7 +76,7 @@
                     <template v-if="$page.props.user.userRoles.includes('Fm Payments teclar')">
                         <div class="invoice-item my-3">
                             <span>Supplier Name:</span>
-                            <Link><span>{{ taxInvoice.user.name }}</span></Link>
+                            <Link :href="route('fm-payments-teclar.suppliers.show', taxInvoice.user_id)"><span>{{ taxInvoice.user.name }}</span></Link>
                         </div>
                         <div class="invoice-item my-3">
                             <span>Quatation Title:</span>

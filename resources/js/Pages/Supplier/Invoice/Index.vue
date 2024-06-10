@@ -92,7 +92,7 @@ function calculateWidth(num1, num2, num3, num4) {
 </script>
 
 <template>
-    <Head title="Dashboard" />
+
 
     <AuthenticatedLayout>
         <div class="py-12">

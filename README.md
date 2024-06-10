@@ -6,12 +6,10 @@ A System designed to facilitate virtual interaction of metbank and its external 
 ## Features
 - System Overview
 <img  src="/public/img/overview.png"/> 
-- Role Management
-<img  src="/public/img/roleindex.png"/> 
-<img  src="/public/img/addrole.png"/> 
-- User Management
-<img  src="/public/img/userindex.png"/>
-<img  src="/public/img/useraddrole.png"/>
+
+| <img  src="/public/img/roleindex.png"/>  | <img  src="/public/img/addrole.png"/> |
+| --------------------------------------- | --------------------------------------- |
+| <img  src="/public/img/userindex.png"/>| <img  src="/public/img/useraddrole.png"/>|
 
 # Procurement Process
 
@@ -42,8 +40,14 @@ After the requisition has been successfully created, Procurement officer will th
 Procurement officer check if the supplier have tax certificate or not
 <img  src="/public/img/11.png"/>
 Procurement officer's duty is to browse all quatations based on the requision and writes a summary of the quatations  to Assistant Group Accountant
-<img  src="/public/img/9.png"/>
-<img  src="/public/img/10.png"/>
+
+
+
+| <img  src="/public/img/9.png"/> | <img  src="/public/img/10.png"/>|
+| --------------------------------------- | --------------------------------------- |
+
+
+
 
 
 ## Assistant Group Accountant
@@ -67,7 +71,10 @@ Procurement officer's duty is to browse all quatations based on the requision an
 - After He/She satisfied the approves the Tax Invoice
 
 <img  src="/public/img/18.png"/>
-<img  src="/public/img/19.png"/>
+
+
+| <img  src="/public/img/18.png"/> | <img  src="/public/img/19.png"/> |
+| --------------------------------------- | --------------------------------------- |
 
 ## Group Accountant
 - Checks Requisition, Supplier Invoice and tax Clearance, Quatation and Summary
